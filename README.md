@@ -24,7 +24,7 @@ Medical Report Input
         ↓
 Text Preprocessing & Embedding
         ↓
-Vector Database (FAISS/Chroma)
+Vector Database (Qdrant)
         ↓
 RAG Pipeline (LangChain)
         ↓
