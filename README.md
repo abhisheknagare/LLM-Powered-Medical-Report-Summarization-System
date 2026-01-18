@@ -41,7 +41,7 @@ Summary + Clinical Findings Output
 | **Base Model** | TinyLlama-1.1B |
 | **Fine-tuning** | LoRA (Parameter-Efficient Fine-Tuning) |
 | **RAG Framework** | LangChain |
-| **Vector Database** | FAISS / Chroma |
+| **Vector Database** | Qdrant |
 | **Embeddings** | sentence-transformers |
 | **Dataset** | MIMIC-IV Clinical Notes |
 | **Language** | Python 3.8+ |
@@ -223,7 +223,7 @@ lora_config = {
 **Components**:
 1. **Document Chunking**: Splits reports into semantic chunks
 2. **Embedding Generation**: Creates vector representations using sentence-transformers
-3. **Vector Storage**: FAISS for efficient similarity search
+3. **Vector Storage**: Qdrant for efficient similarity search
 4. **Retrieval**: Top-k relevant chunks based on query
 5. **Generation**: LLM generates response using retrieved context
 
@@ -287,10 +287,6 @@ Please ensure:
 - Large reports (>2000 tokens) may require chunking for optimal performance
 - GPU memory requirements: minimum 8GB VRAM for training
 - RAG retrieval quality depends on embedding model choice
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
