@@ -3,34 +3,55 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Hugging Face](https://img.shields.io/badge/🤗-Hugging%20Face-yellow)](https://huggingface.co/)
 
-A production-ready system that leverages Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) to automatically summarize medical reports and extract clinical findings from the MIMIC-IV dataset.
+A retrieval-grounded medical report analysis system that combines LoRA fine-tuned TinyLlama, BioBERT embeddings, and Qdrant vector search to generate clinically-aware summaries and structured medical insights from MIMIC-IV microbiology reports.
 
 ## 🎯 Project Overview
 
-This project fine-tunes **TinyLlama-1.1B** using **LoRA** (Low-Rank Adaptation) on clinical notes from the MIMIC-IV dataset to generate accurate medical report summaries. The system implements a **RAG pipeline** using LangChain and vector databases to achieve **82% accuracy** in extracting clinical findings.
+This project implements a **Retrieval-Augmented Generation (RAG)** pipeline for medical report analysis using:
+
+🔹 TinyLlama-1.1B (LoRA fine-tuned)
+🔹 BioBERT-based sentence embeddings
+🔹 Qdrant vector database
+🔹 Biomedical Named Entity Recognition (NER)
+🔹 Entity-level evaluation (Precision, Recall, F1)
+
+The system compares:
+
+- Vanilla LLM generation (without retrieval)
+- RAG-grounded generation (with retrieval)
+
+and evaluates clinical correctness using automated entity extraction.
 
 ## ✨ Key Features
 
-- 🤖 **Fine-tuned LLM**: TinyLlama-1.1B optimized for medical text using LoRA
-- 🔍 **RAG Pipeline**: Retrieval-Augmented Generation for context-aware summaries
-- 📊 **Clinical Finding Extraction**: 82% accuracy in identifying key medical information
-- 🏥 **MIMIC-IV Integration**: Trained on real-world clinical notes from ICU patients
-- ⚡ **Production-Ready**: Scalable architecture suitable for healthcare applications
-- 🔐 **Privacy-Compliant**: Built with HIPAA considerations in mind
+- 🤖 LoRA Fine-Tuned TinyLlama (1.1B)
+- 🔍 Retrieval-Augmented Generation (RAG) using Qdrant
+- 🧠 BioBERT-based Embeddings for semantic retrieval
+- 🏥 Biomedical NER-based Evaluation
+- 📊 Entity-Level Precision, Recall, F1
+- ⚡ Efficient small-model deployment experimentation
+- 🔬 Evaluation pipeline robust to token fragmentation & structured artifacts
 
 ## 🏗️ System Architecture
 ```
 Medical Report Input
-        ↓
-Text Preprocessing & Embedding
-        ↓
-Vector Database (Qdrant)
-        ↓
-RAG Pipeline (LangChain)
-        ↓
-Fine-tuned TinyLlama (LoRA)
-        ↓
-Summary + Clinical Findings Output
+    ↓
+BioBERT Embedding
+    ↓
+Qdrant Vector Search
+    ↓
+User Query
+    ↓
+Top-K Medical Report Retrieval
+    ↓
+TinyLlama (LoRA Fine-Tuned)
+    ↓
+Generated Medical Analysis
+    ↓
+Biomedical NER Extraction
+    ↓
+Entity-Level Evaluation (P/R/F1)
+
 ```
 
 ## 🛠️ Tech Stack
@@ -43,6 +64,7 @@ Summary + Clinical Findings Output
 | **Vector Database** | Qdrant |
 | **Embeddings** | sentence-transformers |
 | **Dataset** | MIMIC-IV Clinical Notes |
+| **Ner** | d4data/biomedical-ner-all |
 | **Language** | Python 3.8+ |
 | **Deep Learning** | PyTorch, Hugging Face Transformers |
 
@@ -147,12 +169,12 @@ print(response)
 
 ## 📊 Performance Metrics
 
-| Metric | Score | Details |
-|--------|-------|---------|
-| Clinical Finding Extraction | **82%** | Accuracy on MIMIC-IV test set |
-| Model Size | 1.1B parameters | Optimized with LoRA |
-| Inference Speed | ~2-3 seconds | Per average report (GPU) |
-| Fine-tuning Method | LoRA | Rank 8, Alpha 16 |
+| Model Version | Precision | Recall | F1 Score
+|--------|---------|---------|---------|
+| Without Retrieval | Moderate | Moderate | Baseline |
+| With Retrieval (RAG) | Higher | Higher | Improved |
+
+- RAG grounding improves clinical entity recall and reduces hallucinated content compared to vanilla generation.
 
 ### Evaluation Results
 
