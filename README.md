@@ -64,7 +64,7 @@ Entity-Level Evaluation (P/R/F1)
 | **Vector Database** | Qdrant |
 | **Embeddings** | sentence-transformers |
 | **Dataset** | MIMIC-IV Clinical Notes |
-| **Ner** | d4data/biomedical-ner-all |
+| **NER** | d4data/biomedical-ner-all |
 | **Language** | Python 3.8+ |
 | **Deep Learning** | PyTorch, Hugging Face Transformers |
 
@@ -274,19 +274,6 @@ This project demonstrates:
 - **Vector databases** for efficient semantic search in clinical text
 - **Clinical NLP** challenges and solutions
 - **Production considerations** for healthcare AI systems
-
-## 🛣️ Roadmap
-
-- [x] Fine-tune TinyLlama on MIMIC-IV
-- [x] Implement RAG pipeline
-- [x] Achieve 82% extraction accuracy
-- [ ] Add support for multiple medical report formats (HL7, FHIR)
-- [ ] Implement real-time inference API (FastAPI)
-- [ ] Create web interface for report upload
-- [ ] Multi-language support (Spanish, French)
-- [ ] Evaluation on additional clinical datasets
-- [ ] Model quantization for edge deployment
-- [ ] Integration with EHR systems
 
 ## 🤝 Contributing
 
